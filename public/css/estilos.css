@@ -1,0 +1,45 @@
+/*Estilos Generales*/
+.mobile {
+    display: none;
+}
+/* Estilos de Inicio */
+.agregar {
+    right: -95%;
+    bottom: 10px;
+    position: sticky;
+}
+.notification {
+    z-index: 1;
+}
+.status, .notification {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+#monto {
+    cursor: pointer;
+}
+#montoOculto {
+    display: none;
+    cursor: pointer;
+}
+#btnLoad {
+    display: none;
+}
+
+
+
+
+/*Estilos Mobile*/
+@media (max-width: 600px) {
+    .mobile {
+        display: block;
+    }
+    .desktop {
+        display: none;
+    }
+    .agregar {
+        right: -80%;
+        bottom: 10px;
+    }
+}
