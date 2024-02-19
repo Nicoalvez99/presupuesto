@@ -103,12 +103,12 @@ class MontoController extends Controller
         ]);
         if($validatedData["tipoDeMovimiento"] == 'entrada'){
             $user = Auth::user();
-            $montoAntiguo = Montos::where('user_id', '=', $user)->get('monto');
-            $idUserMontos = Montos::where('user_id', '=', $user)->get('user_id');
+            $montoAntiguo = Montos::where('user_key', '=', $user->key)->get('monto');
+            $idUserMontos = Montos::where('user_id', '=', $user->id)->get('user_id');
             $user_id = $idUserMontos[0]['user_id'];
             $montoActual = $montoAntiguo[0]["monto"] + $validatedData["monto"];
             $montoCifrado = encrypt($montoActual);
-
+            
             Records::create([
                 "user_id" => $user_id,
                 "descripcion" => $validatedData["descripcion"],
@@ -117,15 +117,16 @@ class MontoController extends Controller
                 "tipoDeMovimiento" => $validatedData["tipoDeMovimiento"]
             ]);
 
-            Montos::where('user_id', $user_id)->update(["monto" => $montoActual]);
+            Montos::where('user_key', $user->key)->update(["monto" => $montoActual]);
             
             return redirect()->route('dashboard')->with('status', 'Capital actualizado correctamente.');
         } else {
             $user = Auth::user();
-            $montoAntiguo = Montos::where('user_id', '=', $user)->get('monto');
-            $idUserMontos = Montos::where('user_id', '=', $user)->get('user_id');
+            $montoAntiguo = Montos::where('user_key', '=', $user->key)->get('monto');
+            $idUserMontos = Montos::where('user_id', '=', $user->id)->get('user_id');
             $user_id = $idUserMontos[0]['user_id'];
             $montoActual = $montoAntiguo[0]["monto"] - $validatedData["monto"];
+            
             Records::create([
                 "user_id" => $user_id,
                 "descripcion" => $validatedData["descripcion"],
@@ -134,7 +135,7 @@ class MontoController extends Controller
                 "tipoDeMovimiento" => $validatedData["tipoDeMovimiento"]
             ]);
 
-            Montos::where('user_id', $user_id)->update(["monto" => $montoActual]);
+            Montos::where('user_key', $user->key)->update(["monto" => $montoActual]);
             
             return redirect()->route('dashboard')->with('status', 'Capital actualizado correctamente.');
         }

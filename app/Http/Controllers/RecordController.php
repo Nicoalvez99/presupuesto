@@ -20,10 +20,10 @@ class RecordController extends Controller
             $totalHistorial = 0; // Establecer el totalHistorial en 0
         } else {
             // Obtener el totalHistorial normalmente si no es domingo
-            $totalHistorial = Records::where('user_id', '=', $user->id)->sum('monto');
+            $totalHistorial = Records::where('user_key', '=', $user->key)->sum('monto');
         }
 
-        $gastosPorDia = Records::where('user_id', '=', $user->id)
+        $gastosPorDia = Records::where('user_key', '=', $user->key)
             ->whereBetween('created_at', [now()->subWeek(), now()]) // Filtrar por la última semana
             ->selectRaw('DAYOFWEEK(created_at) as dia_semana, COUNT(*) as cantidad_gastos')
             ->groupBy('dia_semana')
@@ -52,7 +52,7 @@ class RecordController extends Controller
         }
 
         // Obtener gastos por mes del año actual
-        $gastosPorMes = Records::where('user_id', '=', $user->id)
+        $gastosPorMes = Records::where('user_key', '=', $user->key)
             ->whereYear('created_at', now()->year) // Filtrar por el año actual
             ->selectRaw('MONTH(created_at) as mes, COUNT(*) as cantidad_gastos')
             ->groupBy('mes')
