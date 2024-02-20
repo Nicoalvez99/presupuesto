@@ -5,33 +5,77 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Prolinko</title>
+    <title>Finanzas Familiares - Prolinko</title>
     <link rel="shortcut icon" href="{{ asset('images/logo.PNG') }}" type="image/x-icon">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Styles -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <style>
     body {
         background: rgb(12, 4, 19);
         background: linear-gradient(90deg, rgba(12, 4, 19, 1) 49%, rgba(24, 9, 36, 1) 70%, rgba(38, 5, 66, 1) 100%, rgba(38, 5, 66, 1) 100%);
+        background-size: 200% 100%;
+        animation: gradientAnimation 5s linear infinite;
+    }
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    i {
+        background-color: #191a1a;
+        padding: 7px;
+        border-radius: 2px;
+        color: #06b6d4;
+        font-size: 20px;
+    }
+
+    .containerDos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 40px;
     }
 
     main {
         height: 100vh;
     }
 
+    .imagenDos {
+        display: none;
+    }
+
+    .titulo-color {
+        color: #06b6d4;
+    }
+
     .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-left: 40px;
+        width: 100%;
+        height: 100%;
+        --color: rgba(114, 114, 114, 0.3);
+        background-color: #191a1a;
+        background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+            linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+        background-size: 55px 55px;
+        border-radius: 10px;
     }
 
     @media (max-width: 700px) {
@@ -39,7 +83,11 @@
             display: none;
         }
 
-        .container {
+        .imagenDos {
+            display: block;
+        }
+
+        .containerDos {
             margin: 50px;
             padding-left: 0px;
         }
@@ -75,7 +123,7 @@
                             <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
                         </li>
                         <li>
-                            <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
+                            <a href="#servicios" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
                         </li>
                         <li>
                             <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
@@ -103,7 +151,7 @@
         <div class="flex">
             <div class="w-full sm:w-1/2 container" data-aos="fade-up">
                 <div class="block">
-                    <h1 class="titulo mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-5xl dark:text-white">Administración financiera,<br>construye tu prosperidad.</h1>
+                    <h1 class="titulo mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-5xl dark:text-white">Administración financiera,<br>construye tu <span class="titulo-color">prosperidad</span>.</h1>
                     <p class="subtitulo text-slate-400 my-5">Optimiza tu economía familiar: controla gastos, ahorra estratégicamente, logra metas. Descubre la tranquilidad financiera con nuestra aplicación innovadora.</p>
                     <div class="text-center sm:text-start">
                         <a href="{{ route('register') }}" class="w-auto sm:text-start relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
@@ -118,6 +166,117 @@
                 <img src="{{ asset('images/portada01.png') }}" class="mx-auto" width="300" alt="">
             </div>
         </div>
+        <div class="imagenDos w-full mb-5" data-aos="fade-up">
+            <img src="{{ asset('portada02.png') }}" class="mx-auto" width="240" alt="">
+        </div>
+        <section class="w-full my-10 h-full" id="servicios">
+            <div class="text-center" data-aos="fade-up" >
+                <h2
+                    class="titulo mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-4xl dark:text-white">
+                    Nuestros servicios</h2>
+            </div>
+            <div class="sm:flex">
+                <div class="w-full sm:w-1/4 text-center my-12 px-5" data-aos="fade-up">
+                    <i class="bi bi-list-columns"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white my-2">Historial</h4>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Gestiona exhaustivamente tu historial financiero: gastos e ingresos registrados.</p>
+                </div>
+                <div class="w-full sm:w-1/4 text-center my-12 px-5" data-aos="fade-up">
+                    <i class="bi bi-check2-circle"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white my-2">Presupuesto</h4>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Calcula tu presupuesto equilibrando ingresos y gastos.</p>
+
+                </div>
+                <div class="w-full sm:w-1/4 text-center my-12 px-5" data-aos="fade-up">
+                    <i class="bi bi-graph-down"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white my-2">Gastos</h4>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Organiza y clasifica gastos fijos y variables con su respectivo estatus.</p>
+
+                </div>
+                <div class="w-full sm:w-1/4 text-center my-12 px-5" data-aos="fade-up">
+                    <i class="bi bi-graph-up"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white my-2">Ingresos</h4>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Registra y modifica ingresos activos y pasivos con facilidad.</p>
+
+                </div>
+
+            </div>
+            <div class="sm:flex">
+                <div class="w-full sm:w-1/4 text-center my-12 px-5" data-aos="fade-up">
+                    <i class="bi bi-bar-chart"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white my-2">Gráficos</h4>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Analiza gráficos semanales y mensuales para evaluar tus gastos.</p>
+
+                </div>
+                <div class="w-full sm:w-1/4 text-center my-12 px-5" data-aos="fade-up">
+                    <i class="bi bi-cash"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white my-2">Ahorros</h4>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Mantén un seguimiento detallado de tus ahorros financieros.</p>
+
+                </div>
+                <div class="w-full sm:w-1/4 text-center my-12 px-5" data-aos="fade-up">
+                    <i class="bi bi-stop-btn"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white my-2">Deudas</h4>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Planifica estratégicamente tus deudas para un manejo efectivo.</p>
+
+                </div>
+                <div class="w-full sm:w-1/4 text-center my-12 px-5" data-aos="fade-up">
+                    <i class="bi bi-people"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white my-2">Grupos</h4>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Conecta tu cuenta de manera segura con otros miembros familiares.</p>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="container w-full sm:w-1/2 p-5 my-5">
+
+            <ol class="relative border-s border-gray-200 dark:border-gray-700">
+                <li class="mb-10 ms-4">
+                    <div
+                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                    </div>
+                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">February
+                        2022</time>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Application UI code in Tailwind CSS
+                    </h3>
+                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages
+                        including a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce &
+                        Marketing pages.</p>
+                    <a href="#"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">Learn
+                        more <svg class="w-3 h-3 ms-2 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg></a>
+                </li>
+                <li class="mb-10 ms-4">
+                    <div
+                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                    </div>
+                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">March
+                        2022</time>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Marketing UI design in Figma</h3>
+                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">All of the pages and components
+                        are first designed in Figma and we keep a parity between the two versions even as we update the
+                        project.</p>
+                </li>
+                <li class="ms-4">
+                    <div
+                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                    </div>
+                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">April
+                        2022</time>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">E-Commerce UI code in Tailwind CSS
+                    </h3>
+                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Get started with dozens of web
+                        components and interactive elements built on top of Tailwind CSS.</p>
+                </li>
+            </ol>
+
+
+        </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
