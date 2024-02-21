@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Records extends Model
 {
-    protected $fillable = ['user_id', 'descripcion', 'user_key', 'monto', 'tipoDeMovimiento'];
+    protected $fillable = ['user_name', 'descripcion', 'user_key', 'monto', 'tipoDeMovimiento'];
     use HasFactory;
 }

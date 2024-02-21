@@ -26,6 +26,7 @@
         background-size: 200% 100%;
         animation: gradientAnimation 5s linear infinite;
     }
+
     @keyframes gradientAnimation {
         0% {
             background-position: 0% 50%;
@@ -149,7 +150,7 @@
     </header>
     <main class="mx-5 h-full">
         <div class="flex">
-            <div class="w-full sm:w-1/2 container" data-aos="fade-up">
+            <div class="w-full sm:w-1/2 containerDos" data-aos="fade-up">
                 <div class="block">
                     <h1 class="titulo mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-4xl lg:text-5xl dark:text-white">Administración financiera,<br>construye tu <span class="titulo-color">prosperidad</span>.</h1>
                     <p class="subtitulo text-slate-400 my-5">Optimiza tu economía familiar: controla gastos, ahorra estratégicamente, logra metas. Descubre la tranquilidad financiera con nuestra aplicación innovadora.</p>
@@ -170,9 +171,8 @@
             <img src="{{ asset('portada02.png') }}" class="mx-auto" width="240" alt="">
         </div>
         <section class="w-full my-10 h-full" id="servicios">
-            <div class="text-center" data-aos="fade-up" >
-                <h2
-                    class="titulo mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-4xl dark:text-white">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="titulo mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-4xl dark:text-white">
                     Nuestros servicios</h2>
             </div>
             <div class="sm:flex">
@@ -228,36 +228,52 @@
                 </div>
             </div>
         </section>
-        <section class="container w-full sm:w-1/2 p-5 my-5">
-            <ol class="relative border-s border-gray-200 dark:border-gray-700">
-                <li class="mb-10 ms-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Paso 1</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Obtené la Key de la cuenta a la que queres vincularte:
-                    </h3>
-                    <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">La key o llave es una clave alfabética de ocho dígitos única y personal, pedila cuando quieras vincular tu cuenta con otra persona.</p>
-                </li>
-                <li class="mb-10 ms-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Paso 2</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Solicitá la vinculación:</h3>
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Luego de que obtengas la key copiala en el siguiente campo y hace click en el botón "Solicitar".</p>
-                </li>
-                <li class="ms-4">
-                    <div
-                        class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
-                    </div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Paso 3</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Esperá la aceptación de vinculación:
-                    </h3>
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Luego a la persona que queres vincular tu cuenta le llegará una notificación que deberá aceptar o rechazar.</p>
-                </li>
-            </ol>
-        </section>
+        <div class="text-center" data-aos="fade-up">
+                <h2 class="titulo mb-4 text-3xl font-extrabold leading-none tracking-tight text-white md:text-3xl lg:text-4xl dark:text-white">
+                    Vinculate</h2>
+            </div>
+        <div class="block sm:flex">
+            <section class="container w-full sm:w-1/2 p-5 my-5">
+                <ol class="relative border-s border-gray-200 dark:border-gray-700">
+                    <li class="mb-10 ms-4">
+                        <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                        </div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Paso 1</time>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Obtené la Key de la cuenta a la que queres vincularte:
+                        </h3>
+                        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">La key o llave es una clave alfabética de quince dígitos única y personal, pedila cuando quieras vincular tu cuenta con otra persona.</p>
+                    </li>
+                    <li class="mb-10 ms-4">
+                        <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                        </div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Paso 2</time>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Solicitá la vinculación:</h3>
+                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Luego de que obtengas la key copiala en el siguiente campo y hace click en el botón "Solicitar".</p>
+                    </li>
+                    <li class="ms-4">
+                        <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
+                        </div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Paso 3</time>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Esperá la aceptación de vinculación:
+                        </h3>
+                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Luego a la persona que queres vincular tu cuenta le llegará una notificación que deberá aceptar o rechazar.</p>
+                    </li>
+                </ol>
+            </section>
+            <section class="w-full sm:w-1/2 p-5 my-5">
+                <div class="mx-10 my-5">
+                    <x-input-label for="name" :value="__('Key')" />
+                    <x-text-input type="text" class="mt-1 block w-full" value="LyGHNrTojPERnhd" disabled />
+                </div>
+                <img src="{{ asset('images/paso1.jpg') }}" style="border-radius: 10px;" class="mx-auto" width="250" alt="">
+                <div class="mx-10 my-5 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    Notificación enviada correctamente.
+                </div>
+            </section>
+        </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

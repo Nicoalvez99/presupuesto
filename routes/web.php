@@ -40,12 +40,13 @@ Route::post('gastos-fijos', [GastosController::class, 'create'])->middleware(['a
 Route::post('gastos-variables', [GastosController::class, 'createVariables'])->middleware(['auth', 'verified'])->name('gastosV.create');
 Route::post('/dashboard/notification', [NotificationController::class, 'update'])->middleware(['auth', 'verified'])->name('notification.accept');
 Route::post('dashboard/', [NotificationController::class, 'destroy'])->middleware(['auth', 'verified'])->name('notification.delete');
-
+Route::post('ahorros', [AhorroController::class, 'create'])->middleware(['auth', 'verified'])->name('ahorro.create');
 
 Route::patch('ingresos-activos/{ingreso}', [IngresoController::class, 'update'])->middleware(['auth', 'verified'])->name('ingresosA.update');
 Route::patch('/dashboard/monto', [MontoController::class, 'update'])->middleware(['auth', 'verified'])->name('monto');
-
 Route::patch('gastos-fijos/{gasto}', [GastosController::class, 'update'])->middleware(['auth', 'verified'])->name('gastosF.update');
+Route::patch('ahorros/{ahorro}', [AhorroController::class, 'update'])->middleware(['auth', 'verified'])->name('ahorros.update');
+
 Route::delete('ingreso-activo/{ingreso}', [IngresoController::class, 'destroy'])->middleware(['auth', 'verified'])->name('ingreso.delete');
 Route::delete('gastos-fijos/{gasto}', [GastosController::class, 'destroy'])->middleware(['auth', 'verified'])->name('gastosF.delete');
 Route::middleware('auth')->group(function () {

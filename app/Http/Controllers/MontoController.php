@@ -10,6 +10,7 @@ use App\Models\Gastos;
 use App\Models\User;
 use App\Models\Ingresos;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 class MontoController extends Controller
 {
     /**
@@ -106,11 +107,13 @@ class MontoController extends Controller
             $montoAntiguo = Montos::where('user_key', '=', $user->key)->get('monto');
             $idUserMontos = Montos::where('user_id', '=', $user->id)->get('user_id');
             $user_id = $idUserMontos[0]['user_id'];
+            $user_name = User::where('id', '=', $user_id)->get('name');
+            
             $montoActual = $montoAntiguo[0]["monto"] + $validatedData["monto"];
             $montoCifrado = encrypt($montoActual);
             
             Records::create([
-                "user_id" => $user_id,
+                "user_name" => $user_name[0]["name"],
                 "descripcion" => $validatedData["descripcion"],
                 "user_key" => $user->key,
                 "monto" => $validatedData["monto"],
@@ -125,10 +128,11 @@ class MontoController extends Controller
             $montoAntiguo = Montos::where('user_key', '=', $user->key)->get('monto');
             $idUserMontos = Montos::where('user_id', '=', $user->id)->get('user_id');
             $user_id = $idUserMontos[0]['user_id'];
+            $user_name = User::where('id', '=', $user_id)->get('name');
             $montoActual = $montoAntiguo[0]["monto"] - $validatedData["monto"];
             
             Records::create([
-                "user_id" => $user_id,
+                "user_name" => $user_name[0]["name"],
                 "descripcion" => $validatedData["descripcion"],
                 "user_key" => $user->key,
                 "monto" => $validatedData["monto"],

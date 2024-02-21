@@ -14,7 +14,10 @@ class AhorroController extends Controller
     {
         $user = Auth::user()->key;
         $ahorros = Ahorros::where('user_key', $user)->get();
+        $totalAhorros = Ahorros::where('user_key', $user)->sum('monto');
+        
         return view('ahorros', [
+            "totalAhorros" => $totalAhorros,
             "ahorros" => $ahorros
         ]);
     }
@@ -22,9 +25,15 @@ class AhorroController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $userKey = Auth::user()->key;
+        Ahorros::create([
+            "monto" => $request->monto,
+            "user_key" => $userKey
+        ]);
+
+        return redirect()->route('ahorros')->with('status', 'Ahorro creado exitosamente');
     }
 
     /**
@@ -54,9 +63,12 @@ class AhorroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Ahorros $ahorro)
     {
-        //
+        $ahorro->update([
+            "monto" => $request->monto
+        ]);
+        return redirect()->route('ahorros')->with('status', 'Ahorro actualizado correctamente');
     }
 
     /**
