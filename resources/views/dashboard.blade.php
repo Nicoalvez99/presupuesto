@@ -5,9 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
-        @foreach($montos as $monto)
-        <h4 id="monto" class="text-center text-white text-4xl text-sm-6xl">${{ number_format($monto->monto) }}</h4>
-        @endforeach
+        <h4 id="monto" class="text-center text-white text-4xl text-sm-6xl">${{ number_format($totalMonto) }}</h4>
         <h4 id="montoOculto" class="text-center text-white text-4xl text-sm-6xl">$****</h4>
     </div>
 

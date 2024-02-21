@@ -23,10 +23,14 @@ class MontoController extends Controller
         $records = Records::where('user_key', '=', $userKey)->latest()->take(5)->get();
         $montos = Montos::where('user_key', '=', $userKey)->get();
 
+        $totalMonto = Montos::where('user_key', '=', $userKey)->get("monto");
+        $totalMontoDecrypt = Crypt::decryptString($totalMonto[0]["monto"]);
+        
         $notifications = Notifications::where('key', '=', $userKey)->get();
 
         //dd($notificaciones);
         return view('dashboard', [
+            "totalMonto" => $totalMontoDecrypt,
             "montos" => $montos,
             "records" => $records,
             "notifications" => $notifications
@@ -109,8 +113,10 @@ class MontoController extends Controller
             $user_id = $idUserMontos[0]['user_id'];
             $user_name = User::where('id', '=', $user_id)->get('name');
             
-            $montoActual = $montoAntiguo[0]["monto"] + $validatedData["monto"];
-            $montoCifrado = encrypt($montoActual);
+            $montoAntiguoDecrypt = Crypt::decryptString($montoAntiguo[0]["monto"]);
+            $montoActual = $montoAntiguoDecrypt + $validatedData["monto"];
+
+            $montoCifrado = Crypt::encryptString($montoActual);
             
             Records::create([
                 "user_name" => $user_name[0]["name"],
@@ -120,7 +126,7 @@ class MontoController extends Controller
                 "tipoDeMovimiento" => $validatedData["tipoDeMovimiento"]
             ]);
 
-            Montos::where('user_key', $user->key)->update(["monto" => $montoActual]);
+            Montos::where('user_key', $user->key)->update(["monto" => $montoCifrado]);
             
             return redirect()->route('dashboard')->with('status', 'Capital actualizado correctamente.');
         } else {
@@ -129,8 +135,12 @@ class MontoController extends Controller
             $idUserMontos = Montos::where('user_id', '=', $user->id)->get('user_id');
             $user_id = $idUserMontos[0]['user_id'];
             $user_name = User::where('id', '=', $user_id)->get('name');
-            $montoActual = $montoAntiguo[0]["monto"] - $validatedData["monto"];
-            
+
+            $montoAntiguoDecrypt = Crypt::decryptString($montoAntiguo[0]["monto"]);
+            $montoActual = $montoAntiguoDecrypt - $validatedData["monto"];
+
+            $montoCifrado = Crypt::encryptString($montoActual);
+
             Records::create([
                 "user_name" => $user_name[0]["name"],
                 "descripcion" => $validatedData["descripcion"],
@@ -139,7 +149,7 @@ class MontoController extends Controller
                 "tipoDeMovimiento" => $validatedData["tipoDeMovimiento"]
             ]);
 
-            Montos::where('user_key', $user->key)->update(["monto" => $montoActual]);
+            Montos::where('user_key', $user->key)->update(["monto" => $montoCifrado]);
             
             return redirect()->route('dashboard')->with('status', 'Capital actualizado correctamente.');
         }

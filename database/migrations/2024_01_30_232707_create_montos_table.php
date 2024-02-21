@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('montos', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('monto');
+            $table->string('monto');
             $table->string('user_key');
             $table->timestamps();
         });
