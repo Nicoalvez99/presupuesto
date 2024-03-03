@@ -17,6 +17,13 @@ class NotificationController extends Controller
     {
         //
     }
+    public function admin()
+    {
+        $users = User::get();
+        return view('administrador', [
+            "users" => $users
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -56,9 +63,13 @@ class NotificationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user, Request $request)
     {
-        //
+
+        $user->update([
+            "tipoDeUsuario" => $request->tipoDeUsuario
+        ]);
+        return redirect()->route('administrador')->with('status', 'Usuario editado correctamente.');
     }
 
     /**

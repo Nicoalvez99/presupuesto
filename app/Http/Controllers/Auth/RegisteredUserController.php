@@ -52,6 +52,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'key' => $randomKey,
             'password' => Hash::make($request->password),
+            'tipoDeUsuario' => 'Simple'
         ]);
 
         Montos::create([

@@ -11,7 +11,7 @@
          <img src="{{ asset('images/logo.PNG') }}" class="h-6 me-3 sm:h-7" alt="Prolinko Logo" />
          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Prolinko</span>
       </a>
-      <ul class="space-y-2 font-medium"> 
+      <ul class="space-y-2 font-medium">
          <li>
             <a href="{{ route('dashboard') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <i class="bi bi-house-add-fill"></i>
@@ -22,6 +22,9 @@
             <a href="{{ route('historial') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <i class="bi bi-list-columns-reverse"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Historial</span>
+               @if(auth::user()->tipoDeUsuario == 'Simple')
+               <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"><i class="bi bi-star-fill"></i></span>
+               @endif
             </a>
          </li>
          <li>
@@ -30,12 +33,18 @@
                   <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                </svg>
                <span class="flex-1 ms-3 whitespace-nowrap">Presupuestos</span>
+               @if(auth::user()->tipoDeUsuario == 'Simple')
+               <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"><i class="bi bi-star-fill"></i></span>
+               @endif
             </a>
          </li>
          <li>
             <a href="{{ route('graficos') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <i class="bi bi-bar-chart-fill"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Gráficos</span>
+               @if(auth::user()->tipoDeUsuario == 'Simple')
+               <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"><i class="bi bi-star-fill"></i></span>
+               @endif
             </a>
          </li>
          <li>
@@ -66,9 +75,15 @@
             <ul id="dropdown-example-ingresos" class="hidden py-2 space-y-2">
                <li>
                   <a href="{{ route('ingresoActivo') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">-Ingresos activos</a>
+                  @if(auth::user()->tipoDeUsuario == 'Simple')
+                  <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"><i class="bi bi-star-fill"></i></span>
+                  @endif
                </li>
                <li>
                   <a href="{{ route('ingresoPasivo') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">-Ingresos pasivos</a>
+                  @if(auth::user()->tipoDeUsuario == 'Simple')
+                  <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"><i class="bi bi-star-fill"></i></span>
+                  @endif
                </li>
             </ul>
          </li>
@@ -79,7 +94,8 @@
             </a>
          </li>
          <li>
-            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+
+            <a href="{{ route('deudas') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <i class="bi bi-dash-circle-fill"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Deudas</span>
             </a>
@@ -90,6 +106,14 @@
                <span class="flex-1 ms-3 whitespace-nowrap">Perfil</span>
             </a>
          </li>
+         @if(Auth::user()->tipoDeUsuario == 'Administrador')
+         <li>
+            <a href="{{ route('administrador') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <i class="bi bi-person-circle"></i>
+               <span class="flex-1 ms-3 whitespace-nowrap">Administrador</span>
+            </a>
+         </li>
+         @endif
          <form method="POST" action="{{ route('logout') }}">
             @csrf
             <li>
