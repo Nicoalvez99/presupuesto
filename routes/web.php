@@ -24,6 +24,9 @@ use App\Http\Controllers\NotificationController;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+Route::get('/premium', function () {
+    return view('premium');
+})->name('premium');
 
 Route::get('/graficos', [RecordController::class, 'index'])->middleware(['auth', 'verified', 'premium'])->name('graficos');
 Route::get('/dashboard', [MontoController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');

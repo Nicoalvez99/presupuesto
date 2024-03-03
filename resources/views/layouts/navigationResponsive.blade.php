@@ -19,13 +19,18 @@
             </a>
          </li>
          <li>
+            @if(auth::user()->tipoDeUsuario == 'Simple')
+            <a href="{{ route('premium') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <i class="bi bi-list-columns-reverse"></i>
+               <span class="flex-1 ms-3 whitespace-nowrap">Historial</span>
+               <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"><i class="bi bi-star-fill"></i></span>
+            </a>
+            @else
             <a href="{{ route('historial') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <i class="bi bi-list-columns-reverse"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Historial</span>
-               @if(auth::user()->tipoDeUsuario == 'Simple')
-               <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300"><i class="bi bi-star-fill"></i></span>
-               @endif
             </a>
+            @endif
          </li>
          <li>
             <a href="{{ route('presupuesto') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -114,6 +119,7 @@
             </a>
          </li>
          @endif
+         
          <form method="POST" action="{{ route('logout') }}">
             @csrf
             <li>
@@ -125,7 +131,11 @@
                </a>
             </li>
          </form>
-
+         @if(Auth::user()->tipoDeUsuario == 'Simple')
+         <button onclick="window.location.href='/premium'" class="premium">
+            Sé Premium <i class="bi bi-star-fill"></i>
+         </button>
+         @endif
       </ul>
    </div>
 </aside>
